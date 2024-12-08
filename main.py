@@ -71,15 +71,15 @@ def is_self_dual(truth_table):
 
 def is_monotonic(truth_table):
     """Проверка монотонности."""
-    # n = len(truth_table)
-    # for i in range(n):
-    #     for j in range(n):
-    #         if bin(i & j).count('1') == bin(i).count('1') and truth_table[i] < truth_table[j]:
-    #             return False
-    #         if bin(i & j).count('1') == bin(j).count('1') and truth_table[j] < truth_table[i]:
-    #             return False
-    # return True
-    pass
+    n = len(truth_table)
+    for i in range(n):
+        for j in range(i + 1, n):
+            # Проверяем, если i <= j (i меньше или равен j по битам)
+            if (i & j) == i:  # Все биты i должны быть меньше или равны соответствующим битам j
+                if truth_table[i] > truth_table[j]:
+                    return False
+    return True
+
 
 
 def is_linear_function(table):
